@@ -2,11 +2,7 @@ import styled from 'styled-components';
 
 import { colors } from 'Constants';
 
-import { SystemColors } from 'Protocols';
-
-interface ButtonProps {
-  readonly variant?: SystemColors;
-}
+import { ButtonProps } from 'Protocols';
 
 export const RoundedButton = styled.button<ButtonProps>`
   display: inline-flex;
