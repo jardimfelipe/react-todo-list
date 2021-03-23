@@ -6,6 +6,7 @@ const colors: Colors = {
   error: '#E27D60',
   success: '#52C41A',
   background: '#C5C6C7',
+  default: '#ffffff',
 };
 
 export default colors;

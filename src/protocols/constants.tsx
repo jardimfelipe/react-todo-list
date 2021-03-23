@@ -3,7 +3,8 @@ export type SystemColors =
   | 'secondary'
   | 'error'
   | 'success'
-  | 'background';
+  | 'background'
+  | 'default';
 
 export type Colors = {
   [key in SystemColors]: string;

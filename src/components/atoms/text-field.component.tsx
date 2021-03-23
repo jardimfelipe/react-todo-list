@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Input = styled.input<React.InputHTMLAttributes<HTMLInputElement>>`
+const TextField = styled.input<React.InputHTMLAttributes<HTMLInputElement>>`
   background: #ffffff;
   color: #000000;
   font-size: 1.125em;
@@ -15,4 +15,4 @@ const Input = styled.input<React.InputHTMLAttributes<HTMLInputElement>>`
   }
 `;
 
-export default Input;
+export default TextField;

@@ -6,7 +6,7 @@ const TodoBox = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 15px;
-  width: 600px;
+  width: 450px;
   height: auto;
 `;
 

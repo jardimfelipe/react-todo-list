@@ -1,6 +1,11 @@
 export { default as Container } from './atoms/container.component';
-export { default as Input } from './atoms/input.component';
+export { default as TextField } from './atoms/text-field.component';
 export { default as TodoBox } from './atoms/todo-box.component';
+export { default as Checkbox } from './atoms/checkbox.component';
 export { default as Box } from './atoms/box.component';
+export { default as ListItem } from './molecules/list-item.component';
+export { default as ItemsList } from './organisms/items-list.component';
+export { default as DeleteIcon } from './atoms/delete-icon.component';
+export { default as AddIcon } from './atoms/add-icon.component';
 export * from './atoms/typography.component';
 export * from './atoms/button.component';

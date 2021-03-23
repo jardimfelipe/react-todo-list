@@ -17,4 +17,10 @@ export const RoundedButton = styled.button<ButtonProps>`
   color: #ffffff;
   border: none;
   background-color: ${({ variant = 'primary' }) => colors[variant]};
+  svg {
+    max-width: 15px;
+  }
+  &:hover {
+    opacity: 0.4;
+  }
 `;
