@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './styles.scss';
 import {
@@ -14,7 +14,22 @@ import {
   AddIcon,
 } from 'Components';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { getTodoList } from 'store/ducks/todos.duck';
+import { RootState } from 'store';
+
 function App() {
+  const dispatch = useDispatch();
+  const { todos, isLoading, error } = useSelector(
+    (state: RootState) => state.todoReducer
+  );
+
+  console.log(isLoading, error);
+
+  useEffect(() => {
+    dispatch(getTodoList());
+  }, [dispatch]);
+
   return (
     <Container>
       <Title gutterBottom>Hello Code Challenge!</Title>
@@ -40,7 +55,7 @@ function App() {
             <AddIcon />
           </RoundedButton>
         </Box>
-        <ItemsList />
+        <ItemsList todos={todos} />
       </TodoBox>
     </Container>
   );

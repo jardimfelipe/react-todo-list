@@ -1,10 +1,11 @@
 import { Box, Checkbox, DeleteIcon } from 'components';
 import { RoundedButton } from 'components/atoms/button.component';
+import { ListItemProps } from 'Protocols';
 import React from 'react';
 
 // import { Container } from './styles';
 
-const ListItem: React.FC = () => {
+const ListItem: React.FC<ListItemProps> = ({ todo }) => {
   return (
     <Box
       params={{
@@ -13,7 +14,7 @@ const ListItem: React.FC = () => {
         justifyContent: 'space-between',
       }}
     >
-      <Checkbox value={true} label="Buy pizza on the way" name="name" />
+      <Checkbox value={true} label={todo.title} id={`todo-${todo.id}`} />
       <RoundedButton variant="default">
         <DeleteIcon />
       </RoundedButton>

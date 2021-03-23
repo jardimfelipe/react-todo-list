@@ -51,12 +51,12 @@ const Label = styled.label<LabelProps>`
       : undefined}
 `;
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, name, value = false }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ label, id, value = false }) => {
   return (
     <CheckboxContainer>
-      <CheckboxInput id={name} />
+      <CheckboxInput id={id} />
       <Checkmark value={value} />
-      <Label value={value} htmlFor={name}>
+      <Label value={value} htmlFor={id}>
         {label}
       </Label>
     </CheckboxContainer>

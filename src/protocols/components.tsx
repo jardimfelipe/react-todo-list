@@ -1,4 +1,5 @@
 import { SystemColors } from './index';
+import { Todo } from './store';
 
 export interface TitleProps {
   readonly color?: SystemColors;
@@ -21,4 +22,12 @@ export interface CheckmarkProps {
 
 export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   value: boolean;
+}
+
+export interface ItemsListProps {
+  todos: Todo[];
+}
+
+export interface ListItemProps {
+  todo: Todo;
 }

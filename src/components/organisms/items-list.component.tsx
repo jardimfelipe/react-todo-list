@@ -1,7 +1,8 @@
 import React from 'react';
 import { ListItem, Box } from 'components';
+import { ItemsListProps } from 'Protocols';
 
-const ItemsList: React.FC = () => {
+const ItemsList: React.FC<ItemsListProps> = ({ todos }) => {
   return (
     <Box
       params={{
@@ -11,10 +12,9 @@ const ItemsList: React.FC = () => {
         flexDirection: 'column',
       }}
     >
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
+      {todos.map((todo) => {
+        return <ListItem key={`todo-${todo.id}`} todo={todo} />;
+      })}
     </Box>
   );
 };
