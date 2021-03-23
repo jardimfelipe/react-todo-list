@@ -295,6 +295,7 @@ module.exports = function (webpackEnv) {
         Pages: path.resolve(__dirname, '../src/pages/'),
         Hooks: path.resolve(__dirname, '../src/hooks/'),
         Constants: path.resolve(__dirname, '../src/constants/'),
+        Protocols: path.resolve(__dirname, '../src/protocols/'),
         'react-native': 'react-native-web',
         // Allows for better profiling with ReactDevTools
         ...(isEnvProductionProfile && {

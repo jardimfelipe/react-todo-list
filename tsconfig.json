@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "Assets": ["./assets"],
       "Components": ["./components"],
       "Pages": ["./pages"],
       "Hooks": ["./hooks"],
-      "Constants": ["./constants"]
+      "Constants": ["./constants"],
+      "Protocols": ["./protocols"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
