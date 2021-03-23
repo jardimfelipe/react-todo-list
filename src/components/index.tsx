@@ -7,5 +7,7 @@ export { default as ListItem } from './molecules/list-item.component';
 export { default as ItemsList } from './organisms/items-list.component';
 export { default as DeleteIcon } from './atoms/delete-icon.component';
 export { default as AddIcon } from './atoms/add-icon.component';
+export { default as Modal } from './atoms/modal.component';
+export { default as Dialog } from './molecules/dialog.component';
 export * from './atoms/typography.component';
 export * from './atoms/button.component';

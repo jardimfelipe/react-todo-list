@@ -24,3 +24,13 @@ export const RoundedButton = styled.button<ButtonProps>`
     opacity: 0.4;
   }
 `;
+
+export const Button = styled.button<ButtonProps>`
+  background-color: ${({ variant = 'primary' }) => colors[variant]};
+  color: ${({ variant = 'primary' }) =>
+    variant === 'default' ? '#000000' : '#ffffff'};
+  border: none;
+  padding: 5px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+`;

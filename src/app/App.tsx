@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './styles.scss';
 import {
@@ -12,23 +12,37 @@ import {
   RoundedButton,
   ItemsList,
   AddIcon,
+  Dialog,
+  TextField,
+  Button,
 } from 'Components';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getTodoList } from 'store/ducks/todos.duck';
 import { RootState } from 'store';
+import { Todo } from 'Protocols';
 
 function App() {
   const dispatch = useDispatch();
+  const [todoList, setTodoList] = useState<Todo[] | []>([]);
+  const [isActive, setIsActive] = useState(false);
   const { todos, isLoading, error } = useSelector(
     (state: RootState) => state.todoReducer
   );
 
   console.log(isLoading, error);
 
+  const handleClick = () => {
+    setIsActive((isActive) => !isActive);
+  };
+
   useEffect(() => {
     dispatch(getTodoList());
   }, [dispatch]);
+
+  useEffect(() => {
+    setTodoList((todoList: Todo[]) => (todoList = [...todoList, ...todos]));
+  }, [todos]);
 
   return (
     <Container>
@@ -51,11 +65,20 @@ function App() {
           </Box>
         </Box>
         <Box params={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <RoundedButton>
+          <RoundedButton onClick={handleClick}>
             <AddIcon />
           </RoundedButton>
         </Box>
-        <ItemsList todos={todos} />
+        <ItemsList todos={todoList} />
+        <Dialog onClose={() => setIsActive(false)} isActive={isActive}>
+          <Title>Crie uma nova atividade!</Title>
+          <TextField placeholder="Titulo" />
+          <TextField placeholder="Descrição" />
+          <Box params={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Button variant="default">Aaa</Button>
+            <Button>bbbb</Button>
+          </Box>
+        </Dialog>
       </TodoBox>
     </Container>
   );

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { SystemColors } from './index';
 import { Todo } from './store';
 
@@ -30,4 +31,14 @@ export interface ItemsListProps {
 
 export interface ListItemProps {
   todo: Todo;
+}
+
+export interface ModalProps {
+  isActive: boolean;
+}
+
+export interface DialogProps {
+  isActive: boolean;
+  children: ReactNode;
+  onClose: () => void;
 }
