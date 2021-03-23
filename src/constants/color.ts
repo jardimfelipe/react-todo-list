@@ -1,8 +1,11 @@
-const colors = {
-  primaryColor: '#41B3A3',
-  secondaryColor: '#C38D9E',
-  errorColor: '#E27D60',
-  successColor: '#52C41A',
+import { Colors } from 'Protocols';
+
+const colors: Colors = {
+  primary: '#41B3A3',
+  secondary: '#C38D9E',
+  error: '#E27D60',
+  success: '#52C41A',
+  background: '#C5C6C7',
 };
 
 export default colors;
