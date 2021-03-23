@@ -16,7 +16,7 @@ export const RoundedButton = styled.button<ButtonProps>`
   cursor: pointer;
   color: #ffffff;
   border: none;
-  background-color: ${({ variant = 'primary' }) => colors[variant]};
+  background-color: ${({ variant = 'default' }) => colors[variant]};
   svg {
     max-width: 15px;
   }
@@ -26,8 +26,8 @@ export const RoundedButton = styled.button<ButtonProps>`
 `;
 
 export const Button = styled.button<ButtonProps>`
-  background-color: ${({ variant = 'primary' }) => colors[variant]};
-  color: ${({ variant = 'primary' }) =>
+  background-color: ${({ variant = 'default' }) => colors[variant]};
+  color: ${({ variant = 'default' }) =>
     variant === 'default' ? '#000000' : '#ffffff'};
   border: none;
   padding: 5px 20px;

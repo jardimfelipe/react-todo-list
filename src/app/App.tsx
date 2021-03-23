@@ -14,7 +14,6 @@ import {
   AddIcon,
   Dialog,
   TextField,
-  Button,
 } from 'Components';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -61,11 +60,11 @@ function App() {
             <TitleDescription>Março</TitleDescription>
           </Box>
           <Box params={{ display: 'flex' }}>
-            <Text>12 Tasks</Text>
+            <Text>{todoList.length} Tasks</Text>
           </Box>
         </Box>
         <Box params={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <RoundedButton onClick={handleClick}>
+          <RoundedButton variant="primary" onClick={handleClick}>
             <AddIcon />
           </RoundedButton>
         </Box>
@@ -74,10 +73,6 @@ function App() {
           <Title>Crie uma nova atividade!</Title>
           <TextField placeholder="Titulo" />
           <TextField placeholder="Descrição" />
-          <Box params={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Button variant="default">Aaa</Button>
-            <Button>bbbb</Button>
-          </Box>
         </Dialog>
       </TodoBox>
     </Container>
