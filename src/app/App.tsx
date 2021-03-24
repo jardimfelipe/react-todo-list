@@ -14,6 +14,7 @@ import {
   Icons,
   Dialog,
   TextField,
+  TextArea,
 } from 'Components';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,7 +58,9 @@ function App() {
   );
 
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (
+      e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
       const name = e.target.name;
       const value = e.target.value;
       setModelTodo({
@@ -176,7 +179,7 @@ function App() {
             name="title"
             placeholder="Titulo"
           />
-          <TextField
+          <TextArea
             onChange={handleChange}
             value={modelTodo.description}
             name="description"
@@ -186,7 +189,7 @@ function App() {
       </TodoBox>
       {error.status && (
         <Text color="error" align="center">
-          Ocorreu um erro, por favor tente novamente
+          {error.message}
         </Text>
       )}
     </Container>

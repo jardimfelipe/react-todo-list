@@ -6,6 +6,8 @@ import { DialogProps } from 'Protocols';
 // import { RoundedButton } from 'components/atoms/button.component';
 
 const DialolgContainer = styled.div`
+  max-width: 600px;
+  min-width: 360px;
   background-color: #ffffff;
   border-radius: 4px;
   display: flex;

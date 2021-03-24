@@ -9,6 +9,9 @@ const TodoBox = styled.div`
   width: 450px;
   height: auto;
   margin-bottom: 40px;
+  @media (max-width: 760px) {
+    width: 350px;
+  }
 `;
 
 export default TodoBox;
