@@ -19,6 +19,10 @@ const todoSlice = createSlice({
       ...state,
       todos: [...payload],
     }),
+    addTodo: (state, { payload }: PayloadAction<Todo>) => ({
+      ...state,
+      todos: [...state.todos, payload],
+    }),
     setError: (state, { payload }: PayloadAction<Error>) => ({
       ...state,
       error: { ...payload },
@@ -26,7 +30,7 @@ const todoSlice = createSlice({
   },
 });
 
-export const { setTodos, setError } = todoSlice.actions;
+export const { setTodos, setError, addTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
 

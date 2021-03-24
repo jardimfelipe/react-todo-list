@@ -5,9 +5,10 @@ export interface TodoInitialState {
 }
 
 export interface Todo {
-  id: number;
+  id?: number;
   title: string;
   description: string;
+  done: boolean;
 }
 
 export interface Error {

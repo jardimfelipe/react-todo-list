@@ -3,6 +3,9 @@ import { ListItem, Box } from 'components';
 import { ItemsListProps } from 'Protocols';
 
 const ItemsList: React.FC<ItemsListProps> = ({ todos }) => {
+  const handleClick = (id: number) => {
+    console.log(id);
+  };
   return (
     <Box
       params={{
@@ -13,7 +16,9 @@ const ItemsList: React.FC<ItemsListProps> = ({ todos }) => {
       }}
     >
       {todos.map((todo) => {
-        return <ListItem key={`todo-${todo.id}`} todo={todo} />;
+        return (
+          <ListItem onClick={handleClick} key={`todo-${todo.id}`} todo={todo} />
+        );
       })}
     </Box>
   );

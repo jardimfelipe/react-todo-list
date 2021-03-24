@@ -5,7 +5,7 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-const ListItem: React.FC<ListItemProps> = ({ todo }) => {
+const ListItem: React.FC<ListItemProps> = ({ todo, onClick }) => {
   return (
     <Box
       params={{
@@ -14,7 +14,12 @@ const ListItem: React.FC<ListItemProps> = ({ todo }) => {
         justifyContent: 'space-between',
       }}
     >
-      <Checkbox value={true} label={todo.title} id={`todo-${todo.id}`} />
+      <Checkbox
+        onClick={() => onClick(todo.id || 0)}
+        value={todo.done}
+        label={todo.title}
+        id={`todo-${todo.id}`}
+      />
       <RoundedButton variant="default">
         <DeleteIcon />
       </RoundedButton>

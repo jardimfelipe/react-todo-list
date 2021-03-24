@@ -31,6 +31,7 @@ export interface ItemsListProps {
 
 export interface ListItemProps {
   todo: Todo;
+  onClick: (id: number) => void;
 }
 
 export interface ModalProps {
@@ -41,4 +42,5 @@ export interface DialogProps {
   isActive: boolean;
   children: ReactNode;
   onClose: () => void;
+  onSubmit: () => void;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import './styles.scss';
 import {
@@ -17,13 +17,17 @@ import {
 } from 'Components';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getTodoList } from 'store/ducks/todos.duck';
+import { getTodoList, addTodo } from 'store/ducks/todos.duck';
 import { RootState } from 'store';
 import { Todo } from 'Protocols';
 
 function App() {
   const dispatch = useDispatch();
-  const [todoList, setTodoList] = useState<Todo[] | []>([]);
+  const [newTodo, setNewTodo] = useState<Todo>({
+    title: '',
+    description: '',
+    done: false,
+  });
   const [isActive, setIsActive] = useState(false);
   const { todos, isLoading, error } = useSelector(
     (state: RootState) => state.todoReducer
@@ -35,13 +39,22 @@ function App() {
     setIsActive((isActive) => !isActive);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setNewTodo({
+      ...newTodo,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = useCallback(() => {
+    dispatch(addTodo(newTodo));
+  }, [dispatch, newTodo]);
+
   useEffect(() => {
     dispatch(getTodoList());
   }, [dispatch]);
-
-  useEffect(() => {
-    setTodoList((todoList: Todo[]) => (todoList = [...todoList, ...todos]));
-  }, [todos]);
 
   return (
     <Container>
@@ -60,7 +73,7 @@ function App() {
             <TitleDescription>Março</TitleDescription>
           </Box>
           <Box params={{ display: 'flex' }}>
-            <Text>{todoList.length} Tasks</Text>
+            <Text>{todos.length} Tasks</Text>
           </Box>
         </Box>
         <Box params={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -68,11 +81,25 @@ function App() {
             <AddIcon />
           </RoundedButton>
         </Box>
-        <ItemsList todos={todoList} />
-        <Dialog onClose={() => setIsActive(false)} isActive={isActive}>
-          <Title>Crie uma nova atividade!</Title>
-          <TextField placeholder="Titulo" />
-          <TextField placeholder="Descrição" />
+        <ItemsList todos={todos} />
+        <Dialog
+          onSubmit={handleSubmit}
+          onClose={() => setIsActive(false)}
+          isActive={isActive}
+        >
+          <Title>Crie uma nova atividade</Title>
+          <TextField
+            onChange={handleChange}
+            value={newTodo.title}
+            name="title"
+            placeholder="Titulo"
+          />
+          <TextField
+            onChange={handleChange}
+            value={newTodo.description}
+            name="description"
+            placeholder="Descrição"
+          />
         </Dialog>
       </TodoBox>
     </Container>

@@ -14,7 +14,12 @@ const DialolgContainer = styled.div`
   gap: 20px;
 `;
 
-const Dialog: React.FC<DialogProps> = ({ isActive, onClose, children }) => {
+const Dialog: React.FC<DialogProps> = ({
+  isActive,
+  onClose,
+  onSubmit,
+  children,
+}) => {
   return (
     <Modal isActive={isActive}>
       <DialolgContainer>
@@ -26,7 +31,9 @@ const Dialog: React.FC<DialogProps> = ({ isActive, onClose, children }) => {
           <Button onClick={onClose} variant="default">
             Cancelar
           </Button>
-          <Button variant="primary">Enviar</Button>
+          <Button type="submit" onClick={onSubmit} variant="primary">
+            Enviar
+          </Button>
         </Box>
       </DialolgContainer>
     </Modal>

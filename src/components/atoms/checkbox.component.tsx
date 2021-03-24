@@ -51,9 +51,14 @@ const Label = styled.label<LabelProps>`
       : undefined}
 `;
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, id, value = false }) => {
+const Checkbox: React.FC<CheckboxProps> = ({
+  label,
+  id,
+  value = false,
+  onClick,
+}) => {
   return (
-    <CheckboxContainer>
+    <CheckboxContainer onClick={onClick}>
       <CheckboxInput id={id} />
       <Checkmark value={value} />
       <Label value={value} htmlFor={id}>
