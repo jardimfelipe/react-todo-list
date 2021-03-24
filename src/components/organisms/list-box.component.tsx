@@ -1,9 +1,9 @@
 import React from 'react';
 import { ListItem, Box, Loader } from 'components';
-import { ItemsListProps } from 'Protocols';
+import { ListBoxProps } from 'Protocols';
 import { Text } from 'components/atoms/typography.component';
 
-const ItemsList: React.FC<ItemsListProps> = ({
+const ListBox: React.FC<ListBoxProps> = ({
   todos,
   isLoading,
   onClick,
@@ -40,4 +40,4 @@ const ItemsList: React.FC<ItemsListProps> = ({
   );
 };
 
-export default ItemsList;
+export default ListBox;

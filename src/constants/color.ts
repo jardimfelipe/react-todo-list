@@ -6,7 +6,7 @@ const colors: Colors = {
   error: '#FF3333',
   info: '#000000',
   success: '#52C41A',
-  background: '#C5C6C7',
+  background: '#e7f3ff',
   default: '#ffffff',
 };
 

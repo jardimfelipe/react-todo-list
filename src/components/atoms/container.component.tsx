@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { colors } from 'Constants';
 
 const Container = styled.div`
+  padding-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

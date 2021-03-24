@@ -34,7 +34,7 @@ export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> 
   value: boolean;
 }
 
-export interface ItemsListProps {
+export interface ListBoxProps {
   todos: Todo[];
   isLoading: boolean;
   onClick: (id: number) => void;

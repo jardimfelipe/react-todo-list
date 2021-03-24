@@ -10,7 +10,7 @@ import {
   TitleDescription,
   Text,
   RoundedButton,
-  ItemsList,
+  ListBox,
   Icons,
   Dialog,
   TextField,
@@ -21,8 +21,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTodoList, addTodo, setTodos, deleteTodo } from 'store/ducks/todos.duck';
 import { RootState } from 'store';
 import { Todo, TodoModel } from 'Protocols';
-
-// const { AddIcon } = Icons;
 
 function App() {
   const dispatch = useDispatch();
@@ -133,7 +131,7 @@ function App() {
 
   return (
     <Container>
-      <Title gutterBottom>Hello Code Challenge!</Title>
+      <Title gutterBottom>Todo List</Title>
       <TodoBox>
         <Box
           params={{
@@ -144,8 +142,15 @@ function App() {
           }}
         >
           <Box params={{ display: 'flex', flexDirection: 'column' }}>
-            <SubTitle>Terça-feira, 23</SubTitle>
-            <TitleDescription>Março</TitleDescription>
+            <SubTitle>
+              {new Date().toLocaleDateString('pt-br', {
+                weekday: 'long',
+                day: '2-digit',
+              })}
+            </SubTitle>
+            <TitleDescription>
+              {`de ${new Date().toLocaleDateString('pt-br', { month: 'long' })}`}
+            </TitleDescription>
           </Box>
           <Box params={{ display: 'flex' }}>
             <Text>{todos.length || 'Sem'} Tasks</Text>
@@ -156,7 +161,7 @@ function App() {
             <Icons.AddIcon />
           </RoundedButton>
         </Box>
-        <ItemsList
+        <ListBox
           isLoading={isLoading}
           onEdit={handleEdit}
           onDelete={handleDelete}
