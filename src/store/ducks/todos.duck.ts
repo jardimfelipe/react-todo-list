@@ -3,7 +3,7 @@
 import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from 'store';
-import { Error, Todo, TodoInitialState } from 'Protocols';
+import { Error, Todo, TodoInitialState, TodoModel } from 'Protocols';
 
 const INITIAL_STATE: TodoInitialState = {
   todos: [],
@@ -19,9 +19,12 @@ const todoSlice = createSlice({
       ...state,
       todos: [...payload],
     }),
-    addTodo: (state, { payload }: PayloadAction<Todo>) => ({
+    addTodo: (state, { payload }: PayloadAction<TodoModel>) => ({
       ...state,
-      todos: [...state.todos, payload],
+      todos: [
+        ...state.todos,
+        { ...payload, id: state.todos.length + 1, done: false },
+      ],
     }),
     setError: (state, { payload }: PayloadAction<Error>) => ({
       ...state,

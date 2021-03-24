@@ -17,16 +17,15 @@ import {
 } from 'Components';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getTodoList, addTodo } from 'store/ducks/todos.duck';
+import { getTodoList, addTodo, setTodos } from 'store/ducks/todos.duck';
 import { RootState } from 'store';
-import { Todo } from 'Protocols';
+import { Todo, TodoModel } from 'Protocols';
 
 function App() {
   const dispatch = useDispatch();
-  const [newTodo, setNewTodo] = useState<Todo>({
+  const [newTodo, setNewTodo] = useState<TodoModel>({
     title: '',
     description: '',
-    done: false,
   });
   const [isActive, setIsActive] = useState(false);
   const { todos, isLoading, error } = useSelector(
@@ -35,18 +34,36 @@ function App() {
 
   console.log(isLoading, error);
 
-  const handleClick = () => {
+  const handleAddClick = () => {
     setIsActive((isActive) => !isActive);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setNewTodo({
-      ...newTodo,
-      [name]: value,
-    });
-  };
+  const handleTodoClick = useCallback(
+    (id: number) => {
+      const newTodos = (todos as Array<Todo>).map((todo) => ({
+        ...todo,
+        ...(todo.id === id && {
+          ...todo,
+          done: !todo.done,
+        }),
+      }));
+      const todo = todos.find((todo) => todo.id === id);
+      todo && dispatch(setTodos(newTodos));
+    },
+    [dispatch, todos]
+  );
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const name = e.target.name;
+      const value = e.target.value;
+      setNewTodo({
+        ...newTodo,
+        [name]: value,
+      });
+    },
+    [newTodo]
+  );
 
   const handleSubmit = useCallback(() => {
     dispatch(addTodo(newTodo));
@@ -77,11 +94,11 @@ function App() {
           </Box>
         </Box>
         <Box params={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <RoundedButton variant="primary" onClick={handleClick}>
+          <RoundedButton variant="primary" onClick={handleAddClick}>
             <AddIcon />
           </RoundedButton>
         </Box>
-        <ItemsList todos={todos} />
+        <ItemsList onClick={handleTodoClick} todos={todos} />
         <Dialog
           onSubmit={handleSubmit}
           onClose={() => setIsActive(false)}

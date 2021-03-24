@@ -27,6 +27,7 @@ export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> 
 
 export interface ItemsListProps {
   todos: Todo[];
+  onClick: (id: number) => void;
 }
 
 export interface ListItemProps {
