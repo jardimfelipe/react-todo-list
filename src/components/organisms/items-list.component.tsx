@@ -2,7 +2,7 @@ import React from 'react';
 import { ListItem, Box } from 'components';
 import { ItemsListProps } from 'Protocols';
 
-const ItemsList: React.FC<ItemsListProps> = ({ todos, onClick }) => {
+const ItemsList: React.FC<ItemsListProps> = ({ todos, onClick, onDelete }) => {
   return (
     <Box
       params={{
@@ -13,7 +13,14 @@ const ItemsList: React.FC<ItemsListProps> = ({ todos, onClick }) => {
       }}
     >
       {todos.map((todo) => {
-        return <ListItem onClick={onClick} key={`todo-${todo.id}`} todo={todo} />;
+        return (
+          <ListItem
+            onDelete={onDelete}
+            onClick={onClick}
+            key={`todo-${todo.id}`}
+            todo={todo}
+          />
+        );
       })}
     </Box>
   );

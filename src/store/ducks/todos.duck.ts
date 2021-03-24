@@ -26,6 +26,10 @@ const todoSlice = createSlice({
         { ...payload, id: state.todos.length + 1, done: false },
       ],
     }),
+    deleteTodo: (state, { payload }: PayloadAction<number>) => ({
+      ...state,
+      todos: state.todos.filter(({ id }) => id !== payload),
+    }),
     setError: (state, { payload }: PayloadAction<Error>) => ({
       ...state,
       error: { ...payload },
@@ -33,7 +37,7 @@ const todoSlice = createSlice({
   },
 });
 
-export const { setTodos, setError, addTodo } = todoSlice.actions;
+export const { setTodos, setError, addTodo, deleteTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
 

@@ -17,7 +17,7 @@ import {
 } from 'Components';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getTodoList, addTodo, setTodos } from 'store/ducks/todos.duck';
+import { getTodoList, addTodo, setTodos, deleteTodo } from 'store/ducks/todos.duck';
 import { RootState } from 'store';
 import { Todo, TodoModel } from 'Protocols';
 
@@ -65,6 +65,13 @@ function App() {
     [newTodo]
   );
 
+  const handleDelete = useCallback(
+    (id: number) => {
+      dispatch(deleteTodo(id));
+    },
+    [dispatch]
+  );
+
   const handleSubmit = useCallback(() => {
     dispatch(addTodo(newTodo));
   }, [dispatch, newTodo]);
@@ -98,7 +105,7 @@ function App() {
             <AddIcon />
           </RoundedButton>
         </Box>
-        <ItemsList onClick={handleTodoClick} todos={todos} />
+        <ItemsList onDelete={handleDelete} onClick={handleTodoClick} todos={todos} />
         <Dialog
           onSubmit={handleSubmit}
           onClose={() => setIsActive(false)}
