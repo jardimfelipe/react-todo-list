@@ -3,8 +3,6 @@ import { Box, Checkbox, Icons } from 'components';
 import { RoundedButton } from 'components/atoms/button.component';
 import { ListItemProps } from 'Protocols';
 
-// import { Container } from './styles';
-
 const ListItem: React.FC<ListItemProps> = ({ todo, onClick, onDelete, onEdit }) => {
   return (
     <Box

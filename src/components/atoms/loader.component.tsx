@@ -42,8 +42,6 @@ const Spinner = styled.div`
   }
 `;
 
-// import { Container } from './styles';
-
 const atoms: React.FC<LoaderProps> = ({ isLoading }) => {
   return (
     <LoaderContainer isLoading={isLoading}>

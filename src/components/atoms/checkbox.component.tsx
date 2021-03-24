@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { CheckboxProps, CheckmarkProps, LabelProps } from 'Protocols';
 import { colors } from 'Constants';
-// import { Container } from './styles';
 
 const CheckboxInput = styled.input.attrs({
   type: 'checkbox',

@@ -3,9 +3,8 @@ import React from 'react';
 import { Modal, Box, Button } from 'components';
 import styled from 'styled-components';
 import { DialogProps } from 'Protocols';
-// import { RoundedButton } from 'components/atoms/button.component';
 
-const DialolgContainer = styled.div`
+const DialogContainer = styled.div`
   max-width: 600px;
   min-width: 360px;
   background-color: #ffffff;
@@ -25,7 +24,7 @@ const Dialog: React.FC<DialogProps> = ({
 }) => {
   return (
     <Modal isActive={isActive}>
-      <DialolgContainer>
+      <DialogContainer>
         {/* <RoundedButton onClick={onClose}>x</RoundedButton> */}
         {children}
         <Box
@@ -43,7 +42,7 @@ const Dialog: React.FC<DialogProps> = ({
             Enviar
           </Button>
         </Box>
-      </DialolgContainer>
+      </DialogContainer>
     </Modal>
   );
 };

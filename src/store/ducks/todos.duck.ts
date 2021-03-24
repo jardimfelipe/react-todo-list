@@ -1,5 +1,3 @@
-/* eslint-disable */
-// Arquivo de exemplo e ajuda sem tipagens e interfaces
 import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from 'store';
@@ -41,10 +39,6 @@ export const { setTodos, setError, addTodo, deleteTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
 export const getTodoList = () => async (dispatch: Dispatch) => {
   try {
     const { data } = await axios.get('http://localhost:4000/todos');
@@ -54,5 +48,4 @@ export const getTodoList = () => async (dispatch: Dispatch) => {
   }
 };
 
-/** Seletor de estado do store já tipado */
 export const selectTodoState = (state: RootState) => state.todoReducer;
