@@ -7,6 +7,15 @@ export interface TitleProps {
   readonly gutterBottom?: boolean;
 }
 
+export interface LoaderProps {
+  readonly isLoading: boolean;
+}
+
+export interface TextProps {
+  readonly align?: 'center' | 'start' | 'left';
+  readonly color?: SystemColors;
+}
+
 export interface ButtonProps {
   readonly variant?: SystemColors;
 }
@@ -27,6 +36,7 @@ export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> 
 
 export interface ItemsListProps {
   todos: Todo[];
+  isLoading: boolean;
   onClick: (id: number) => void;
   onDelete: (id: number) => void;
   onEdit: (todo: Todo) => void;

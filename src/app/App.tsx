@@ -145,7 +145,7 @@ function App() {
             <TitleDescription>Março</TitleDescription>
           </Box>
           <Box params={{ display: 'flex' }}>
-            <Text>{todos.length} Tasks</Text>
+            <Text>{todos.length || 'Sem'} Tasks</Text>
           </Box>
         </Box>
         <Box params={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -154,6 +154,7 @@ function App() {
           </RoundedButton>
         </Box>
         <ItemsList
+          isLoading={isLoading}
           onEdit={handleEdit}
           onDelete={handleDelete}
           onClick={handleTodoClick}
@@ -183,6 +184,11 @@ function App() {
           />
         </Dialog>
       </TodoBox>
+      {error.status && (
+        <Text color="error" align="center">
+          Ocorreu um erro, por favor tente novamente
+        </Text>
+      )}
     </Container>
   );
 }

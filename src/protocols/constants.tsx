@@ -4,6 +4,7 @@ export type SystemColors =
   | 'error'
   | 'success'
   | 'background'
+  | 'info'
   | 'default';
 
 export type Colors = {

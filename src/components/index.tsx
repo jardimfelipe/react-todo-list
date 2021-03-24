@@ -8,5 +8,6 @@ export { default as ItemsList } from './organisms/items-list.component';
 export { default as Icons } from './atoms/icons';
 export { default as Modal } from './atoms/modal.component';
 export { default as Dialog } from './molecules/dialog.component';
+export { default as Loader } from './atoms/loader.component';
 export * from './atoms/typography.component';
 export * from './atoms/button.component';

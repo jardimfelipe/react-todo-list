@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { colors } from 'Constants';
 
-import { TitleProps } from 'Protocols';
+import { TitleProps, TextProps } from 'Protocols';
 
 export const Title = styled.h1<TitleProps>`
   font-size: 2em;
@@ -31,6 +31,8 @@ export const TitleDescription = styled.span`
   color: #a5a5a5;
 `;
 
-export const Text = styled.span`
+export const Text = styled.span<TextProps>`
   font-size: 0.9em;
+  text-align: ${({ align = 'initial' }) => align};
+  color: ${({ color = 'info' }) => colors[color]};
 `;

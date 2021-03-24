@@ -1,5 +1,5 @@
-import { ModalProps } from 'Protocols';
 import styled from 'styled-components';
+import { ModalProps } from 'Protocols';
 
 const Modal = styled.div<ModalProps>`
   position: fixed;

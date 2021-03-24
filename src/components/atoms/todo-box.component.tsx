@@ -8,6 +8,7 @@ const TodoBox = styled.div`
   padding: 20px 15px;
   width: 450px;
   height: auto;
+  margin-bottom: 40px;
 `;
 
 export default TodoBox;
