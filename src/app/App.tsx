@@ -34,8 +34,6 @@ function App() {
     (state: RootState) => state.todoReducer
   );
 
-  console.log(isLoading, error);
-
   const handleAddClick = () => {
     setIsActive((isActive) => !isActive);
   };
@@ -177,7 +175,7 @@ function App() {
             todos={todos}
           />
           <Dialog
-            actionButtonDisabled={!modelTodo.title && !modelTodo.description}
+            actionButtonDisabled={!modelTodo.title || !modelTodo.description}
             onSubmit={handleSubmit}
             onClose={() => setIsActive(false)}
             isActive={isActive}
