@@ -1,7 +1,7 @@
+import React from 'react';
 import { Box, Checkbox, Icons } from 'components';
 import { RoundedButton } from 'components/atoms/button.component';
 import { ListItemProps } from 'Protocols';
-import React from 'react';
 
 // import { Container } from './styles';
 

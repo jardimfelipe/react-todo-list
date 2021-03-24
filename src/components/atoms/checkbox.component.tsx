@@ -20,8 +20,6 @@ const CheckboxContainer = styled.div`
   align-items: center;
   position: relative;
   cursor: pointer;
-  label {
-  }
 `;
 
 const Checkmark = styled.span<CheckmarkProps>`
@@ -42,6 +40,13 @@ const Checkmark = styled.span<CheckmarkProps>`
 
 const Label = styled.label<LabelProps>`
   margin-left: 35px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 210px;
+  @media (max-width: 760px) {
+    max-width: 250px;
+  }
   ${({ value }) =>
     value
       ? `
