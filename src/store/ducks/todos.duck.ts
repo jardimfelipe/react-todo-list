@@ -15,16 +15,16 @@ const todoSlice = createSlice({
   name: 'todo',
   initialState: INITIAL_STATE,
   reducers: {
-    setTodos: (state, { payload }: PayloadAction<Todo[]>) => ({
-      ...state,
-      todos: [...payload],
-    }),
     addTodo: (state, { payload }: PayloadAction<TodoModel>) => ({
       ...state,
       todos: [
         ...state.todos,
         { ...payload, id: state.todos.length + 1, done: false },
       ],
+    }),
+    setTodos: (state, { payload }: PayloadAction<Todo[]>) => ({
+      ...state,
+      todos: [...payload],
     }),
     deleteTodo: (state, { payload }: PayloadAction<number>) => ({
       ...state,

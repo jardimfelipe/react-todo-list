@@ -1,11 +1,11 @@
-import { Box, Checkbox, DeleteIcon } from 'components';
+import { Box, Checkbox, Icons } from 'components';
 import { RoundedButton } from 'components/atoms/button.component';
 import { ListItemProps } from 'Protocols';
 import React from 'react';
 
 // import { Container } from './styles';
 
-const ListItem: React.FC<ListItemProps> = ({ todo, onClick, onDelete }) => {
+const ListItem: React.FC<ListItemProps> = ({ todo, onClick, onDelete, onEdit }) => {
   return (
     <Box
       params={{
@@ -20,9 +20,20 @@ const ListItem: React.FC<ListItemProps> = ({ todo, onClick, onDelete }) => {
         label={todo.title}
         id={`todo-${todo.id}`}
       />
-      <RoundedButton onClick={() => onDelete(todo.id)} variant="default">
-        <DeleteIcon />
-      </RoundedButton>
+      <Box
+        params={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <RoundedButton onClick={() => onEdit(todo)} variant="default">
+          <Icons.EditIcon />
+        </RoundedButton>
+        <RoundedButton onClick={() => onDelete(todo.id)} variant="default">
+          <Icons.DeleteIcon />
+        </RoundedButton>
+      </Box>
     </Box>
   );
 };

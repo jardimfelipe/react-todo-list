@@ -29,12 +29,14 @@ export interface ItemsListProps {
   todos: Todo[];
   onClick: (id: number) => void;
   onDelete: (id: number) => void;
+  onEdit: (todo: Todo) => void;
 }
 
 export interface ListItemProps {
   todo: Todo;
   onClick: (id: number) => void;
   onDelete: (id: number) => void;
+  onEdit: (todo: Todo) => void;
 }
 
 export interface ModalProps {

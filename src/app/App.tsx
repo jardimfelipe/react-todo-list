@@ -11,7 +11,7 @@ import {
   Text,
   RoundedButton,
   ItemsList,
-  AddIcon,
+  Icons,
   Dialog,
   TextField,
 } from 'Components';
@@ -21,13 +21,16 @@ import { getTodoList, addTodo, setTodos, deleteTodo } from 'store/ducks/todos.du
 import { RootState } from 'store';
 import { Todo, TodoModel } from 'Protocols';
 
+// const { AddIcon } = Icons;
+
 function App() {
   const dispatch = useDispatch();
-  const [newTodo, setNewTodo] = useState<TodoModel>({
+  const [modelTodo, setModelTodo] = useState<TodoModel>({
     title: '',
     description: '',
   });
   const [isActive, setIsActive] = useState(false);
+  const [isEditingATodo, setIsEditingATodo] = useState({ value: false, id: 0 });
   const { todos, isLoading, error } = useSelector(
     (state: RootState) => state.todoReducer
   );
@@ -57,12 +60,12 @@ function App() {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const name = e.target.name;
       const value = e.target.value;
-      setNewTodo({
-        ...newTodo,
+      setModelTodo({
+        ...modelTodo,
         [name]: value,
       });
     },
-    [newTodo]
+    [modelTodo]
   );
 
   const handleDelete = useCallback(
@@ -72,13 +75,58 @@ function App() {
     [dispatch]
   );
 
+  const handleEdit = useCallback((todo: Todo) => {
+    setIsEditingATodo(
+      (isEditingATodo) =>
+        (isEditingATodo = { ...isEditingATodo, value: true, id: todo.id })
+    );
+    setModelTodo(
+      (modelTodo) =>
+        (modelTodo = {
+          ...modelTodo,
+          title: todo.title,
+          description: todo.description,
+        })
+    );
+  }, []);
+
   const handleSubmit = useCallback(() => {
-    dispatch(addTodo(newTodo));
-  }, [dispatch, newTodo]);
+    if (isEditingATodo.value) {
+      const newTodos = (todos as Array<Todo>).map((todo) => ({
+        ...todo,
+        ...(todo.id === isEditingATodo.id && {
+          ...todo,
+          title: modelTodo.title,
+          description: modelTodo.description,
+        }),
+      }));
+      const todo = todos.find((todo) => todo.id === isEditingATodo.id);
+      todo && dispatch(setTodos(newTodos));
+    } else {
+      dispatch(addTodo(modelTodo));
+    }
+    setIsActive((isActive) => (isActive = !isActive));
+    setModelTodo(
+      (modelTodo) => (modelTodo = { ...modelTodo, title: '', description: '' })
+    );
+  }, [dispatch, modelTodo, isEditingATodo, todos]);
 
   useEffect(() => {
     dispatch(getTodoList());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!isEditingATodo.value) return;
+    setIsActive((isActive) => (isActive = !isActive));
+  }, [isEditingATodo.value]);
+
+  useEffect(() => {
+    if (isActive) return;
+    setIsEditingATodo(
+      (isEditingATodo) =>
+        (isEditingATodo = { ...isEditingATodo, value: false, id: 0 })
+    );
+  }, [isActive]);
 
   return (
     <Container>
@@ -102,25 +150,34 @@ function App() {
         </Box>
         <Box params={{ display: 'flex', justifyContent: 'flex-end' }}>
           <RoundedButton variant="primary" onClick={handleAddClick}>
-            <AddIcon />
+            <Icons.AddIcon />
           </RoundedButton>
         </Box>
-        <ItemsList onDelete={handleDelete} onClick={handleTodoClick} todos={todos} />
+        <ItemsList
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onClick={handleTodoClick}
+          todos={todos}
+        />
         <Dialog
           onSubmit={handleSubmit}
           onClose={() => setIsActive(false)}
           isActive={isActive}
         >
-          <Title>Crie uma nova atividade</Title>
+          <Title>
+            {isEditingATodo.value
+              ? 'Edite sua atividade'
+              : 'Crie uma nova atividade'}
+          </Title>
           <TextField
             onChange={handleChange}
-            value={newTodo.title}
+            value={modelTodo.title}
             name="title"
             placeholder="Titulo"
           />
           <TextField
             onChange={handleChange}
-            value={newTodo.description}
+            value={modelTodo.description}
             name="description"
             placeholder="Descrição"
           />
