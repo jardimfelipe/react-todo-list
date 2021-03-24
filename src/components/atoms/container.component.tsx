@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { colors } from 'Constants';
 
-const Container = styled.div`
-  padding-top: 100px;
+const Container = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

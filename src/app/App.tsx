@@ -131,72 +131,82 @@ function App() {
 
   return (
     <Container>
-      <Title gutterBottom>Todo List</Title>
-      <TodoBox>
-        <Box
-          params={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gridGap: '15px',
-          }}
-        >
-          <Box params={{ display: 'flex', flexDirection: 'column' }}>
-            <SubTitle>
-              {new Date().toLocaleDateString('pt-br', {
-                weekday: 'long',
-                day: '2-digit',
-              })}
-            </SubTitle>
-            <TitleDescription>
-              {`de ${new Date().toLocaleDateString('pt-br', { month: 'long' })}`}
-            </TitleDescription>
+      <Box
+        params={{
+          paddingTop: '100px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Title gutterBottom>Todo List</Title>
+        <TodoBox>
+          <Box
+            params={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gridGap: '15px',
+            }}
+          >
+            <Box params={{ display: 'flex', flexDirection: 'column' }}>
+              <SubTitle>
+                {new Date().toLocaleDateString('pt-br', {
+                  weekday: 'long',
+                  day: '2-digit',
+                })}
+              </SubTitle>
+              <TitleDescription>
+                {`de ${new Date().toLocaleDateString('pt-br', { month: 'long' })}`}
+              </TitleDescription>
+            </Box>
+            <Box params={{ display: 'flex' }}>
+              <Text>{todos.length || 'Sem'} Task(s)</Text>
+            </Box>
           </Box>
-          <Box params={{ display: 'flex' }}>
-            <Text>{todos.length || 'Sem'} Tasks</Text>
+          <Box params={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <RoundedButton variant="primary" onClick={handleAddClick}>
+              <Icons.AddIcon />
+            </RoundedButton>
           </Box>
-        </Box>
-        <Box params={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <RoundedButton variant="primary" onClick={handleAddClick}>
-            <Icons.AddIcon />
-          </RoundedButton>
-        </Box>
-        <ListBox
-          isLoading={isLoading}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-          onClick={handleTodoClick}
-          todos={todos}
-        />
-        <Dialog
-          onSubmit={handleSubmit}
-          onClose={() => setIsActive(false)}
-          isActive={isActive}
-        >
-          <Title>
-            {isEditingATodo.value
-              ? 'Edite sua atividade'
-              : 'Crie uma nova atividade'}
-          </Title>
-          <TextField
-            onChange={handleChange}
-            value={modelTodo.title}
-            name="title"
-            placeholder="Titulo"
+          <ListBox
+            isLoading={isLoading}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onClick={handleTodoClick}
+            todos={todos}
           />
-          <TextArea
-            onChange={handleChange}
-            value={modelTodo.description}
-            name="description"
-            placeholder="Descrição"
-          />
-        </Dialog>
-      </TodoBox>
-      {error.status && (
-        <Text color="error" align="center">
-          {error.message}
-        </Text>
-      )}
+          <Dialog
+            actionButtonDisabled={!modelTodo.title && !modelTodo.description}
+            onSubmit={handleSubmit}
+            onClose={() => setIsActive(false)}
+            isActive={isActive}
+          >
+            <Title>
+              {isEditingATodo.value
+                ? 'Edite sua atividade'
+                : 'Crie uma nova atividade'}
+            </Title>
+            <TextField
+              onChange={handleChange}
+              value={modelTodo.title}
+              name="title"
+              placeholder="Titulo"
+            />
+            <TextArea
+              onChange={handleChange}
+              value={modelTodo.description}
+              name="description"
+              placeholder="Descrição"
+            />
+          </Dialog>
+        </TodoBox>
+        {error.status && (
+          <Text color="error" align="center">
+            {error.message}
+          </Text>
+        )}
+      </Box>
     </Container>
   );
 }

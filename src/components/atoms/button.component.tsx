@@ -33,4 +33,8 @@ export const Button = styled.button<ButtonProps>`
   padding: 5px 20px;
   font-size: 1.2em;
   cursor: pointer;
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
 `;

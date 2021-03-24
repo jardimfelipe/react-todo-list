@@ -18,6 +18,7 @@ const DialolgContainer = styled.div`
 
 const Dialog: React.FC<DialogProps> = ({
   isActive,
+  actionButtonDisabled = false,
   onClose,
   onSubmit,
   children,
@@ -33,7 +34,12 @@ const Dialog: React.FC<DialogProps> = ({
           <Button onClick={onClose} variant="default">
             Cancelar
           </Button>
-          <Button type="submit" onClick={onSubmit} variant="primary">
+          <Button
+            disabled={actionButtonDisabled}
+            type="submit"
+            onClick={onSubmit}
+            variant="primary"
+          >
             Enviar
           </Button>
         </Box>

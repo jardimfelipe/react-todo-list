@@ -54,6 +54,7 @@ export interface ModalProps {
 }
 
 export interface DialogProps {
+  actionButtonDisabled?: boolean;
   isActive: boolean;
   children: ReactNode;
   onClose: () => void;
