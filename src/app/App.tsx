@@ -106,9 +106,6 @@ function App() {
       dispatch(addTodo(modelTodo));
     }
     setIsActive((isActive) => (isActive = !isActive));
-    setModelTodo(
-      (modelTodo) => (modelTodo = { ...modelTodo, title: '', description: '' })
-    );
   }, [dispatch, modelTodo, isEditingATodo, todos]);
 
   useEffect(() => {
@@ -125,6 +122,9 @@ function App() {
     setIsEditingATodo(
       (isEditingATodo) =>
         (isEditingATodo = { ...isEditingATodo, value: false, id: 0 })
+    );
+    setModelTodo(
+      (modelTodo) => (modelTodo = { ...modelTodo, title: '', description: '' })
     );
   }, [isActive]);
 
